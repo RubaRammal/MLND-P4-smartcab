@@ -13186,8 +13186,8 @@ MzMzsypxgmVmZmZmZlYlTrDMzMzMzMyqxAmWmZmZmZlZlTjBMjMzMzMzqxInWGZmZmZmZlXy/2jR
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>The features relelvant for learning <em>safety</em> and <em>efficiency</em> are waypoint and inputs (left, oncoming, light). waypoint is relevant cause it's necessary for the Smartcab to know which direction it is headed to. The cab must learn to stop at red lights and to move at greenss. It is also necessary that is knows the intended directions of other vehicles to avoid accidents.</p>
-<p>The features that don't seem very important in this case are deadline and inputs. I don't see how learning the deadline could benefit the agent in this case and for the right input, I excluded it since it is of no use in this case. The agent will never have to check it's right since no vehivles will be at its right even when it's turning at an intersection.</p>
+<p>The features relelvant for learning <em>safety</em> and <em>efficiency</em> are waypoint and inputs (left, oncoming, light). waypoint is relevant cause it's necessary for the Smartcab to know which direction it is headed to. The cab must learn to stop at red lights and to move at greens. It is also necessary that is knows the intended directions of other vehicles to avoid accidents.</p>
+<p>The features that don't seem very important in this case are deadline and right input. I don't see how learning the deadline could benefit the agent in this case, although it could make the agent more efficient when it tries to reach the destination in the fastet time possible. However, that could affect the safety negatively because the agent will take risky actions sometimes to reach the distination before the deadline (could cause accidents). It will also cause the state space size to be very large which might not make the agent learn very well. For the right input, I excluded it since it is of no use in this case. The agent will never have to check its right since no vehicles will be coming at its right even when it's turning at an intersection.</p>
 
 </div>
 </div>
@@ -15947,7 +15947,7 @@ TkSuQmCC
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <ol>
-<li><p>An optimal policy is to take a right action when the light is red and the waypoint is right an oncoming is not right or to take no action when the waypoint is forward or left and the light is red.</p>
+<li><p>An optimal policy is to take a right action when the light is red and the waypoint is right an left is not forward or to take no action when the waypoint is forward or left and the light is red. Another policy is taking the action left when the light is green and oncoming is None.</p>
 </li>
 <li><p>For the following state, the action with the highest vlaue (None) is correct. The agnet should take no action when the light is red and the waypoint is forward.</p>
 </li>
@@ -15979,17 +15979,17 @@ TkSuQmCC
 
 </code></pre>
 <ol>
-<li><p>An example of a suboptimal policy:</p>
-<ul>
-<li>The waypoint is left but the light is red so going right is suboptimal. </li>
-</ul>
-</li>
+<li>An example of a suboptimal policy: </li>
 </ol>
 <p><code>('left', 'left', 'forward', 'red')
  -- None : 0.00
  -- forward : 0.00
  -- right : 0.61
  -- left : 0.00</code></p>
+
+<pre><code>- The waypoint is left but the light is red so going right is suboptimal.
+</code></pre>
+<p>Performing the optimal action in this case (left) will put the agent at risk by violating the light rules (going left at a red light), this means the agent learned more safety than efficiency since it did not follow the waypoint to avoid collision which is understandable since collisions and major accidents have larger penalty values.</p>
 
 </div>
 </div>
